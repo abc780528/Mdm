@@ -2,85 +2,44 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>國軍 MDM V7.15</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>國軍 MDM</title>
   <link rel="manifest" href="manifest.json" />
   <style>
-    body {
+    html, body {
       margin: 0;
-      font-family: sans-serif;
-      text-align: center;
-      background-color: #00c853;
-      color: black;
+      padding: 0;
+      height: 100%;
     }
-    header {
-      background-color: black;
-      color: white;
-      padding: 10px;
-      font-weight: bold;
-      font-size: 18px;
-      position: relative;
+    body {
+      background: url('background_masked.png') no-repeat center center;
+      background-size: cover;
+      font-family: "Arial", "微軟正黑體", sans-serif;
     }
-    .menu {
+    #time {
       position: absolute;
-      left: 10px;
-      top: 10px;
-      font-size: 20px;
-    }
-    .content {
-      padding: 20px;
-    }
-    .big-text {
-      font-size: 48px;
+      top: 360px;
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
       font-weight: bold;
-    }
-    .time {
-      font-size: 36px;
-      font-weight: bold;
-    }
-    .label {
-      background: white;
-      margin: 20px auto;
-      padding: 10px;
-      width: fit-content;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-    .footer {
-      margin-top: 30px;
-      font-size: 14px;
       color: black;
-    }
-    .alert {
-      color: red;
-      font-weight: bold;
+      background-color: rgba(0, 200, 83, 0);
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="menu">&#9776;</div>
-    國軍 MDM V7.15
-  </header>
-  <div class="content">
-    <p>已上鎖，可進入此管制營區</p>
-    <div class="big-text">北測中心</div>
-    <div class="time" id="clock">--:--:--</div>
-    <div class="label">國軍營內民用通信<br>資訊器材管制標籤<br><b>C228775135</b></div>
-    <div class="footer">
-      上鎖時間：03/23 23:06:57<br>
-      設定檔：V1.11（07/10 14:44:57）<br>
-      <span class="alert">仿冒必究</span>
-    </div>
-  </div>
+  <div id="time">--:--:--</div>
   <script>
     function updateClock() {
       const now = new Date();
+      const mo = (now.getMonth()+1).toString().padStart(2, '0');
+      const da = now.getDate().toString().padStart(2, '0');
       const h = now.getHours().toString().padStart(2, '0');
       const m = now.getMinutes().toString().padStart(2, '0');
       const s = now.getSeconds().toString().padStart(2, '0');
-      document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+      document.getElementById('time').textContent = `${mo}/${da} ${h}:${m}:${s}`;
     }
     setInterval(updateClock, 1000);
     updateClock();
